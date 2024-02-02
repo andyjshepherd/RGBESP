@@ -5,6 +5,7 @@ RGBESP rgbLed(40, 41, 42);
 
 void setup() {
   rgbLed.begin();
+   rgbLed.setBrightness(30); // Set brightness to 50%
   
   // Set color using RGB values to purple
   rgbLed.setColor(255, 0, 255);

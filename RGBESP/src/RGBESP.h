@@ -43,7 +43,7 @@ enum  	HTMLColorCode {
   Tomato =0xFF6347 , Turquoise =0x40E0D0 , Violet =0xEE82EE , Wheat =0xF5DEB3 ,
   White =0xFFFFFF , WhiteSmoke =0xF5F5F5 , Yellow =0xFFFF00 , YellowGreen =0x9ACD32 ,
   FairyLight =0xFFE42D , FairyLightNCC =0xFF9D2A
-}
+};
 
 class RGBESP {
 public:
@@ -51,12 +51,16 @@ public:
   void begin();
   void setColor(uint8_t red, uint8_t green, uint8_t blue);
   void setColorHex(uint32_t hexValue); // Method to set color using hex value
+  void setBrightness(uint8_t brightness);
 
 private:
   uint8_t _pinR, _pinG, _pinB;
   uint8_t _channelR, _channelG, _channelB;
   uint16_t _freq;
   uint8_t _resolution;
+   uint8_t _brightness = 255; 
+  void updateColor(); 
+  uint8_t _currentRed = 0, _currentGreen = 0, _currentBlue = 0; 
 };
 
 #endif

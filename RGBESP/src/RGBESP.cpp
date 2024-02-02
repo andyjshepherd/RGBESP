@@ -14,14 +14,30 @@ void RGBESP::begin() {
 }
 
 void RGBESP::setColor(uint8_t red, uint8_t green, uint8_t blue) {
-  ledcWrite(_channelR, 255 - red);
-  ledcWrite(_channelG, 255 - green);
-  ledcWrite(_channelB, 255 - blue);
+  _currentRed = red;
+  _currentGreen = green;
+  _currentBlue = blue;
+  updateColor();
 }
 
 void RGBESP::setColorHex(uint32_t hexValue) {
-  uint8_t red = (hexValue >> 16) & 0xFF;
-  uint8_t green = (hexValue >> 8) & 0xFF;
-  uint8_t blue = hexValue & 0xFF;
-  setColor(red, green, blue);
+  _currentRed = (hexValue >> 16) & 0xFF;
+  _currentGreen = (hexValue >> 8) & 0xFF;
+  _currentBlue = hexValue & 0xFF;
+  updateColor();
+}
+
+void RGBESP::setBrightness(uint8_t brightness) {
+  _brightness = brightness;
+  updateColor();
+}
+
+void RGBESP::updateColor() {
+  uint8_t red = (_currentRed * _brightness) / 255;
+  uint8_t green = (_currentGreen * _brightness) / 255;
+  uint8_t blue = (_currentBlue * _brightness) / 255;
+
+  ledcWrite(_channelR, 255 - red);
+  ledcWrite(_channelG, 255 - green);
+  ledcWrite(_channelB, 255 - blue);
 }
