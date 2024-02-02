@@ -1,4 +1,4 @@
-```
+
 # RGBESP Library for Arduino
 
 The RGBESP library provides an easy-to-use interface for controlling RGB LEDs with ESP32 boards using the LEDC hardware. It supports setting colors using RGB values, hexadecimal color codes, and predefined HTML color names. Additionally, it allows dynamic brightness adjustment for the LEDs without changing the color.
